@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import com.example.project261.viewModel.MainViewModel
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
@@ -23,11 +25,13 @@ fun MainScreen(
     onOpenItems: (id: String, title: String) -> Unit,
 
     ) {
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
+    val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
         bottomBar = { MyBottomBar() },
-        scaffoldState = scaffoldState
+//        scaffoldState = scaffoldState
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { paddingValues ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
