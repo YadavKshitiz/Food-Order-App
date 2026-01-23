@@ -29,7 +29,6 @@ fun MainScreen(
     onOpenItems: (id: String, title: String) -> Unit,
 
     ) {
-//    val scaffoldState = rememberScaffoldState()
     val snackbarHostState = remember { SnackbarHostState() }
     val categories = remember { mutableStateListOf<CategoryModel>() }
     var showCategoryLoading by remember{mutableStateOf(true)}
@@ -38,7 +37,6 @@ fun MainScreen(
 
     Scaffold(
         bottomBar = { MyBottomBar() },
-//        scaffoldState = scaffoldState
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { paddingValues ->
         LazyVerticalGrid(
