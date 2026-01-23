@@ -12,13 +12,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import com.example.project261.viewModel.MainViewModel
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.project261.R
-
+import com.example.project261.domain.CategoryModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 @Composable
 fun MainScreen(
     viewModel: MainViewModel,
@@ -27,6 +31,10 @@ fun MainScreen(
     ) {
 //    val scaffoldState = rememberScaffoldState()
     val snackbarHostState = remember { SnackbarHostState() }
+    val categories = remember { mutableStateListOf<CategoryModel>() }
+    var showCategoryLoading by remember{mutableStateOf(true)}
+
+
 
     Scaffold(
         bottomBar = { MyBottomBar() },
@@ -45,8 +53,14 @@ fun MainScreen(
         ) {
             item(span = { GridItemSpan(2) }) {
                 TopBar()
-
             }
+                item(span = { GridItemSpan(2) }) {
+                    CategorySection(
+                        categories = categories,
+                        showCategoryLoading=showCategoryLoading,
+                        onCategoryClick = {cat->onOpenItems(cat.Id.toString(),cat.Name)}
+                    )
+                }
         }
     }
 }
