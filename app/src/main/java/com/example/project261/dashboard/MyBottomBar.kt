@@ -29,7 +29,7 @@ fun MyBottomBar() {
     ) {
 
         bottomMenuItemsList.forEach { bottomMenuItem ->
-
+//kuch nhi ese hi hai
             NavigationBarItem(
                 selected = selectedItem == bottomMenuItem.label,
                 onClick = { selectedItem = bottomMenuItem.label },
